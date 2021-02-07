@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pin Generator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="pin-generator half-width">
+                    <input id="GenerateValue" class="form-control" type="text" value="">
+                    <button id="generatePin" onclick="random()" class="generate-btn">Generate Pin</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-section half-width">
+                    <form name="calculator">
+                    <input id="pinValue" name="pinInput" class="form-control" type="text" value="">
+                </form>
+                    <div class="numbers">
+                        <div class="calc-body">
+                            <div class="calc-button-row">
+                              <div class="button" onclick="calculator.pinInput.value += '7'">7</div>
+                              <div  class="button" onclick="calculator.pinInput.value += '8'">8</div>
+                              <div class="button" onclick="calculator.pinInput.value += '9'">9</div>
+                            </div>
+                            <div class="calc-button-row">
+                              <div class="button" onclick="calculator.pinInput.value += '4'">4</div>
+                              <div class="button" onclick="calculator.pinInput.value += '5'">5</div>
+                              <div class="button" onclick="calculator.pinInput.value += '6'">6</div>
+                            </div>
+                            <div class="calc-button-row">
+                              <div class="button" onclick="calculator.pinInput.value += '1'">1</div>
+                              <div class="button" onclick="calculator.pinInput.value += '2'">2</div>
+                              <div class="button" onclick="calculator.pinInput.value += '3'">3</div>
+                            </div>
+                            <div class="calc-button-row">
+                                <div class="button"><</div>
+                                <div class="button" onclick="calculator.pinInput.value += '0'">0</div>
+                                <div class="button">C</div>
+                            </div>
+                            <div>
+                                <button type="submit" class="submit-btn" onclick="matchingValue()">Submit</button>
+                                <p class="action-left">3 try left</p>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="notify-section">
+            <p class="notify" id="DontMatch">❌ Pin Didn't Match, Please try again</p>
+            <p class="notify" id="match" >✅ Pin Matched... Secret door is opening for you</p>
+        </div>
+    </div>
+     
+    <script>
+       function random(){
+         const random = (Math.random()* 10000 + '').split(".")[0];
+         document.getElementById('GenerateValue').value = random ; 
+        }
+     
+      function matchingValue(){
+          const GenerateValue = document.getElementById('GenerateValue').value;
+          const pinValue = document.getElementById('pinValue').value;
+          console.log(GenerateValue, pinValue );
+          if(pinValue == GenerateValue){
+            const notify = document.getElementById('match');
+            notify.style.display = 'block';  
+          }
+          else{
+              const notify = document.getElementById('DontMatch');
+              notify.style.display = 'block';
+          }
+      }
+       
+       
+        
+    </script>
+</body>
+</html>
